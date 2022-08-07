@@ -2,13 +2,16 @@
 @section("content")
 <div class="wapper">
     <h1>Buy Form</h1>
-        <form action="">
+        <form action="{{route('buy.store')}}" method = "POST">
+            @csrf
             <select name="buy_book" id="buy_book" >
-                <option value="#">First Book</option>
-                <option value="#">Second Book</option>
+            <option value=""  disabled selected hidden>Choose The Book</option>
+            @foreach($book as $i)
+                <option value="{{$i->id}}">{{$i->book_name}}</option>
+            @endforeach
             </select><br><br>
             <input type="submit" value="Buy" class="mybutt"><br><br>
         </form>
     </div>
 </div>
-@endsection
+@endsection 

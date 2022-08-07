@@ -17,7 +17,7 @@ nav ul{
 }
 nav ul li{
     list-style: none;
-    margin-left: 55px;
+    margin-left: 40px;
     margin-top: 17px;
     
 }
@@ -26,9 +26,25 @@ nav ul li a
     text-decoration: none;
     color:#fff;
 }
+.delete_butt_logout {
+  border: none;
+  width: 100px;
+  background-color: transparent;
+  padding: 11px 120px 11px 5px;
+  color: white;
+  font-size: 15px;
+}
+.logout{
+  color:white;
+  margin-top: -28px;
+}
+.logout:hover,.delete_butt_logout:hover{
+  cursor: pointer;
+  color:black;
+}
 nav ul li a:hover, nav ul li a:active{color:black}
 nav ul .logo{
-    margin-left: 900px;
+    margin-left: 800px;
 }
 .menu ul li:first-child{
     margin-left: 0px;
@@ -120,6 +136,7 @@ nav ul .logo{
     text-align: center;
   
   }
+  
   .wap p, .wapp span, .wapp p{color:chocolate;}
 
   form{
@@ -152,6 +169,7 @@ nav ul .logo{
     border-radius: 6px;
     transition: all 0.3s ease;
   }
+
   .mybutt{
     background-color: chocolate;
     color:#fff;
@@ -223,7 +241,18 @@ nav ul .logo{
     font-weight: bold;
 }
 /*End footer*/
-
+.error
+{
+  color:red;
+}
+.success
+{
+  color:darkgreen;
+  background-color: lightgreen;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
 /* Start Table*/
 table { 
   width: 70%;
@@ -272,11 +301,20 @@ td, th {
   padding: 1px 15px;
   display: inline-block;
 }
+.delete_buttt{
+  background-color: red;
+  color:#FFFFFF;
+  padding: 1px 15px;
+  display: inline-block;
+  margin-left: 20px;
+  transform: translate(10px, -15px);
+}
 .edit_butt:hover{cursor: pointer;}
-.delete_butt:hover{cursor: pointer;}
+.delete_butt:hover, .delete_buttt:hover{cursor: pointer;}
 .butt_link
 {
     text-decoration: none;
     color:#FFFFFF;
 }
+
 /*End Table*/

@@ -12,22 +12,22 @@
     </thead>
                     
     <tbody>
+        @foreach($users as $user)
+        @if($user->Username != 'admin1234')
         <tr>
-            <td>Abdelwahab</td>
-            <td>Abdelwahab@gmail.com</td>
-            <td>Abdelwahab1234</td>
+            <td>{{$user->name}}</td>
+            <td>{{$user->email}}</td>
+            <td>{{$user->Username}}</td>
             <td>
-                <button type="submit" class="delete_butt">Delete</button>
+                <form action="{{route('sign-up.destroy', $user->id)}}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="delete_buttt">Delete</button>
+                </form>
             </td>
         </tr>
-        <tr>
-            <td>Ahmed</td>
-            <td>ahmed@gmail.com</td>
-            <td>Ahmed1234</td>
-            <td>
-                <button type="submit" class="delete_butt">Delete</button>
-            </td>
-        </tr>
+        @endif
+        @endforeach
     </tbody>
 </table>
 <div class="pagination2">

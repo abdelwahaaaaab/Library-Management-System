@@ -17,33 +17,31 @@
     <tbody>
     
         <tr>
-            <td>Ahmed1234</td>
-            <td>C++</td>
-            <td>Jone Doe</td>
-            <td>Programming</td>
-            <td>English</td>
-            <td>10$</td>
+            @foreach($borrow as $i)
+            @foreach($user as $j)
+            @if($j->id == $i->User_id)
+            <td>{{$j->Username}}</td>
+            @endif
+            @endforeach
+            @foreach($book as $k)
+            @if($k->id == $i->borrow_book)
+            <td>{{$k->book_name}}</td>
+            <td>{{$k->book_writer}}</td>
+            <td>{{$k->book_type}}</td>
+            <td>{{$k->book_lang}}</td>
+            <td>{{$k->book_price}} $</td>
+            @endif
+            @endforeach
             <td>
-                <button class="edit_butt"><a href="#" class="butt_link">Edit</a></button>     
+                <form action="{{ route('borrowed-books.destroy', $i->id) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="delete_buttt"  >Delete</button>
+                </form>
             </td>
-            <td>
-                <button type="submit" class="delete_butt"  >Delete</button>
-            </td>
+            @endforeach
         </tr>
-        <tr>
-            <td>Ahmed1234</td>
-            <td>Python</td>
-            <td>Jone Doe</td>
-            <td>Programming</td>
-            <td>English</td>
-            <td>15$</td>
-            <td>
-                <button class="edit_butt"><a href="#" class="butt_link">Edit</a></button>     
-            </td>
-            <td>
-                <button type="submit" class="delete_butt"  >Delete</button>
-            </td>
-        </tr>
+        
     </tbody>
 </table>
 <div class="pagination2">

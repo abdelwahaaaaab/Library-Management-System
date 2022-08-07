@@ -16,30 +16,24 @@
     <tbody>
             
         <tr>
-            <td>C++</td>
-            <td>Jone Doe</td>
-            <td>Programming</td>
-            <td>English</td>
-            <td>10$</td>
+            @foreach($borrow as $i)
+            @foreach($book as $j)
+            @if($i->User_id == session('user_id') && $j->id == $i->borrow_book)  
+            <td>{{$j->book_name}}</td>
+            <td>{{$j->book_writer}}</td>
+            <td>{{$j->book_type}}</td>
+            <td>{{$j->book_lang}}</td>
+            <td>{{$j->book_price}} $</td>
             <td>
-                <button class="edit_butt"><a href="#" class="butt_link">Edit</a></button>     
+                <form action="{{ route('borrow.destroy', $i->id) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="delete_buttt"  >Delete</button>
+                </form>
             </td>
-            <td>
-                <button type="submit" class="delete_butt"  >Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Python</td>
-            <td>Jone Doe</td>
-            <td>Programming</td>
-            <td>English</td>
-            <td>15$</td>
-            <td>
-                <button class="edit_butt"><a href="#" class="butt_link">Edit</a></button>     
-            </td>
-            <td>
-                <button type="submit" class="delete_butt"  >Delete</button>
-            </td>
+            @endif
+            @endforeach
+            @endforeach
         </tr>
     </tbody>
 </table>
@@ -59,30 +53,24 @@
                             
     <tbody>
         <tr>
-            <td>C++</td>
-            <td>Jone Doe</td>
-            <td>Programming</td>
-            <td>English</td>
-            <td>10$</td>
+        @foreach($buy as $i)
+            @foreach($book as $j)
+            @if($i->user_id == session('user_id') && $j->id == $i->buy_book)
+            <td>{{$j->book_name}}</td>
+            <td>{{$j->book_writer}}</td>
+            <td>{{$j->book_type}}</td>
+            <td>{{$j->book_lang}}</td>
+            <td>{{$j->book_price}} $</td>
             <td>
-                <button class="edit_butt"><a href="#" class="butt_link">Edit</a></button>     
+                <form action="{{ route('buy.destroy', $i->id) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="delete_buttt"  >Delete</button>
+                </form>
             </td>
-            <td>
-                <button type="submit" class="delete_butt" >Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>C++</td>
-            <td>Jone Doe</td>
-            <td>Programming</td>
-            <td>English</td>
-            <td>10$</td>
-            <td>
-                <button class="edit_butt"><a href="#" class="butt_link">Edit</a></button>     
-            </td>
-            <td>
-                <button type="submit" class="delete_butt"  >Delete</button>
-            </td>
+            @endif
+            @endforeach
+            @endforeach
         </tr>
     </tbody>
 </table>

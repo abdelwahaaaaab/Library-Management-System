@@ -5,19 +5,18 @@
 </div>
 
 <div class="wapp">
-    
-    <p>Username: </p> Ahmed1234<br><br>
-    <p>subject: </p>Monaliza Book  <br><br>
-    <p>message:</p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur autem, aliquid impedit saepe dolores sit at non assumenda nisi sequi. Recusandae quaerat tenetur assumenda doloribus voluptatem, facere illo rerum suscipit! <br><br>
-    <p>To mail him/her:</p><a href="mailto:abdelwahabbasiony@gmail.com" target="_blank">Click here</a>
-    
+    @foreach($contact as $i)
+    @foreach($user as $j)
+    @if($j->id == $i->user_id)
+    <p>Username: </p> {{$j->Username}}<br><br>
+    <p>To mail him/her:</p><a href="mailto:{{$j->email}}" target="_blank">Click here</a>
+    @endif
+    @endforeach
+    <p>subject: </p>{{$i->subject}}  <br><br>
+    <p>message:</p>{{$i->message}} <br><br>
+    @endforeach 
 </div>
-<div class="wapp">
-    <p>Username: </p> Ahmed1234<br><br>
-    <p>subject: </p>Monaliza Book  <br><br>
-    <p>message:</p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur autem, aliquid impedit saepe dolores sit at non assumenda nisi sequi. Recusandae quaerat tenetur assumenda doloribus voluptatem, facere illo rerum suscipit! <br><br>
-    <p>To mail him/her: </p><a href="mailto:abdelwahabbasiony@gmail.com" target="_blank">Click here</a>
-</div>
+
 
 <div class="pagination">
     <a href="#">&laquo;</a>

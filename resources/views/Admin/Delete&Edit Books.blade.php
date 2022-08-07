@@ -13,33 +13,25 @@
     </thead>
                     
     <tbody>
-    
-        <tr>
-            <td>C++</td>
-            <td>Jone Doe</td>
-            <td>Programming</td>
-            <td>English</td>
-            <td>10$</td>
+        @foreach($books as $i)
+        <tr>    
+            <td>{{$i->book_name}}</td>
+            <td>{{$i->book_writer}}</td>
+            <td>{{$i->book_type}}</td>
+            <td>{{$i->book_lang}}</td>
+            <td>{{$i->book_price}} $</td>
             <td>
-                <button class="edit_butt"><a href="#" class="butt_link">Edit</a></button>     
+                <button class="edit_butt"><a href="/add-book/{{$i->id}}/edit" class="butt_link">Edit</a></button>     
             </td>
             <td>
-                <button type="submit" class="delete_butt"  >Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Python</td>
-            <td>Jone Doe</td>
-            <td>Programming</td>
-            <td>English</td>
-            <td>15$</td>
-            <td>
-                <button class="edit_butt"><a href="#" class="butt_link">Edit</a></button>     
-            </td>
-            <td>
-                <button type="submit" class="delete_butt"  >Delete</button>
+                <form action="{{ route('add-book.destroy', $i->id) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="delete_buttt"  >Delete</button> 
+                </form> 
             </td>
         </tr>
+        @endforeach
     </tbody>
 </table>
 <div class="pagination2">
