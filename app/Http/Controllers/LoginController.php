@@ -57,7 +57,6 @@ class LoginController extends Controller
 
     public function destroy(Register $id)
     {
-        session()->invalidate();
-        return redirect('/login')->with('message', '* You are Log out *');
+        //
     }
 }

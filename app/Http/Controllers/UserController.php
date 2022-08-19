@@ -13,14 +13,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = Register::latest()->paginate(10);
-        return view('Admin.Show Users' , compact('users'));
+        $flag = 0;
+        $users = Register::latest()->paginate(5);
+        return view('Admin.Show Users' , compact('users', 'flag'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function create()
     {
@@ -35,7 +36,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $flag = 0;
+        $request->validate(
+            ['search_user' => 'required']
+        );
+        $user = $request->search_user;
+        $filteredusers = Register::where('name', 'like', '%'.$user.'%')
+            ->orWhere('email','like', '%'.$user.'%')
+                ->orWhere('Username','like', '%'. $user . '%')->get();
+        if($filteredusers->count())
+        {
+            return view('Admin.Show Users', compact('flag'))->with(['users' => $filteredusers]);
+        }
+        else
+        {
+            $flag = 1;
+            return view('Admin.Show Users', compact('flag'));
+        }               
     }
 
     /**

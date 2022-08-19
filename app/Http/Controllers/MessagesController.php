@@ -10,8 +10,9 @@ class MessagesController extends Controller
 {
     public function index()
     {
-        $user = Register::all();
-        $contact = contact::all();
+        
+        $user = Register::latest()->paginate(5);
+        $contact = contact::latest()->paginate(5);
         return view('Admin.contact messages', compact('user', 'contact') );
-    } 
+    }
 }

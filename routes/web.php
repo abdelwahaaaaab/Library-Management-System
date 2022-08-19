@@ -30,8 +30,9 @@ use Illuminate\Http\Request;
 Route::get('/',function(){
     return view('About');
 });
-Route::resource('/sign-up', 'App\Http\Controllers\RegisterController');
-Route::resource('/login', 'App\Http\Controllers\LoginController');
+Route::resource('/test', 'App\Http\Controllers\TestController');
+Route::resource('/sign-up', 'App\Http\Controllers\RegisterController')->middleware('user');
+Route::resource('/login', 'App\Http\Controllers\LoginController')->middleware('user');
 Route::resource('/home', 'App\Http\Controllers\HomeController');
 Route::group(['middleware' => 'login'], function()
 {

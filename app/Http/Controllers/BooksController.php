@@ -13,8 +13,9 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = AddBook::all();
-        return view('Books', compact('books'));
+        $flag = 0;
+        $books = AddBook::paginate(5);
+        return view('Books', compact('books', 'flag'));
     }
 
     /**
@@ -35,7 +36,27 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+           [ 'search_book' => 'required']
+        );
+        $flag = 0;
+        $book = $request->search_book;
+        $filteredbooks = AddBook::where('book_name', 'like', '%'. $book.'%')
+            ->orWhere('book_writer', 'like', '%'. $book.'%')
+                ->orWhere('book_type', 'like', '%'. $book.'%')
+                    ->orWhere('book_lang', 'like', '%'. $book.'%')
+                        ->orWhere('book_price', 'like', '%'. $book.'%')->get();
+        if($filteredbooks->count())
+        {
+            return view('Books', compact('flag'))->with(['books' => $filteredbooks]);
+        }
+        else
+        {
+            $flag = 1;
+            return view('Books', compact('flag'));
+        }                
+                        
+
     }
 
     /**

@@ -1,8 +1,21 @@
 @extends("layout")
 @section("content")
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
 <div class="wappe">
-    <input type="search" name="search_book" id="search_book" placeholder="Searching">
+    <form action="{{route('books.store')}}" method="POST">
+        @csrf
+    <input type="text" name="search_book" id="search_book" placeholder="Searching">
+    <input type="submit" value="Search" class="mybutt">
+    </form>
+    
 </div>
+
+@if($flag != 1)
 @foreach($books as $book)
 <div class="wapp">
     
@@ -16,14 +29,14 @@
     
 </div>
 @endforeach
+@else
+<div class="wapp">
+    <h1>This Book Not Found</h1>
+</div>
+@endif
+@if(!isset($_REQUEST['search_book']))
 <div class="pagination">
-    <a href="#">&laquo;</a>
-    <a href="#" class="active">1</a>
-    <a class="#" href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">6</a>
-    <a href="#">&raquo;</a>
-</div> 
+{{ $books->links() }}
+</div>
+@endif
 @endsection

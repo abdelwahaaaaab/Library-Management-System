@@ -9,14 +9,14 @@
 </head>
 <body>
     @if(session('CLoggedIn'))
-    <nav>
+    <nav class= "nav1">
         <ul>
             <li> <a href="/home">Home </a></li>
             <li> <a href="/books">Books</a></li>
             <li> <a href="/">About</a></li>
             <li> <a href="/contact">Contact</a></li>
             <li class="logout">
-                <form action="{{route('login.destroy', session('user_id'))}}" method="POST">
+                <form action="{{route('home.destroy', session('user_id'))}}" method="POST">
                     @csrf
                     @method('delete')
                     <input type="submit" value="Log out" class="delete_butt_logout">
@@ -26,14 +26,14 @@
         </ul>
     </nav>
     @elseif(session('ALoggedIn'))
-    <nav>
+    <nav class= "nav1">
         <ul>
             <li> <a href="/admin-home">Home </a></li>
             <li> <a href="/books">Books</a></li>
             <li> <a href="/">About</a></li>
             <li> <a href="/contact">Contact</a></li>
             <li class="logout">
-                <form action="{{route('login.destroy', session('user_id'))}}" method="POST">
+                <form action="{{route('home.destroy', session('user_id'))}}" method="POST">
                     @csrf
                     @method('delete')
                     <input type="submit" value="Log out" class="delete_butt_logout">
@@ -43,7 +43,7 @@
         </ul>
     </nav>
     @else
-    <nav>
+    <nav class= "nav1">
         <ul>
             <li> <a href="/home">Home </a></li>
             <li> <a href="/login">Login </a></li>

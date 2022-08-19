@@ -15,9 +15,9 @@ class BorrowListController extends Controller
      */
     public function index()
     {
-        $user = Register::all();
-        $borrow = borrow::all();
-        $book = AddBook::all();
+        $user = Register::latest()->paginate(5);
+        $borrow = borrow::latest()->paginate(5);
+        $book = AddBook::latest()->paginate(5);
         return view('Admin.Borrowed Books', compact('borrow', 'user', 'book'));
     }
 
@@ -39,7 +39,37 @@ class BorrowListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+        $flag = 0;
+        $request->validate(
+            ['search_borrow' => 'required']
+        );
+        $borrow1 = $request->search_borrow;
+        $filteredborrows = Register::where('Username', 'like', '%'. $borrow1 . '%')->get();
+        $filteredborrows1 =AddBook::Where('book_name', 'like', '%' .$borrow1 . '%')
+                ->orWhere('book_writer', 'like', '%' .$borrow1 . '%')
+                    ->orWhere('book_type', 'like', '%' .$borrow1 . '%')
+                        ->orWhere('book_lang', 'like', '%' .$borrow1 . '%')
+                            ->orWhere('book_price', 'like', '%' .$borrow1 . '%')->get();
+        if($filteredborrows1->count())
+        {
+            $borrow = borrow::all();
+            $user = Register::all();
+            return view('Admin.Borrowed Books', compact('flag', 'borrow','user'))->with(['book' => $filteredborrows1]);
+        }
+        elseif($filteredborrows->count())
+        {
+            $borrow = borrow::all();
+            $book = AddBook::all();
+            return view('Admin.Borrowed Books', compact('flag', 'borrow','book'))->with(['user' => $filteredborrows]);
+
+        }
+        else
+        {
+            $flag = 1;
+            return view('Admin.Borrowed Books', compact('flag'));
+        }
+        */                    
     }
 
     /**

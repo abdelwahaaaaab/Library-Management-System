@@ -1,5 +1,13 @@
 @extends("layout")
 @section("content")
+<div class="wappe">
+    <form action="{{route('book-action.store')}}" method="POST">
+        @csrf
+    <input type="text" name="search_book" id="search_book" placeholder="Searching">
+    <input type="submit" value="Search" class="mybutt">
+    </form>
+</div>
+@if($flag != 1)
 <table class="table2">
     <thead>
         <tr>
@@ -34,7 +42,12 @@
         @endforeach
     </tbody>
 </table>
-<div class="pagination2">
+@else
+<div class="wappee">
+    <h1>This Book Not found</h1>
+</div>
+@endif
+<div class="pagination3">
     <a href="#">&laquo;</a>
     <a href="#" class="active">1</a>
     <a class="#" href="#">2</a>

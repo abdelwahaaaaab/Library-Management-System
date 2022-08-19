@@ -43,7 +43,7 @@
         </tr>
     </tbody>
 </table>
-<div class="pagination2">
+<div class="pagination3">
     <a href="#">&laquo;</a>
     <a href="#" class="active">1</a>
     <a class="#" href="#">2</a>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Register;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +14,11 @@ class HomeController extends Controller
     public function index()
     {
         return view('Client.Home');
+    }
+    public function destroy(Register $id)
+    {
+        session()->invalidate();
+        return redirect('/login')->with('message', '* You are Log out *');
     }
 
 }
